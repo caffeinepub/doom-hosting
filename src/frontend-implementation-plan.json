@@ -1,0 +1,74 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Fix server creation button - prevent redirect loop and ensure server provisioning",
+  "requirements": [
+    {
+      "id": "REQ-9",
+      "summary": "Fix the server creation button to prevent redirect loop and ensure proper server provisioning flow for both free and paid plans",
+      "acceptanceCriteria": [
+        "Clicking the server creation button does not cause a redirect loop back to the dashboard",
+        "Free plan selection immediately creates a server without redirecting",
+        "Paid plan selection properly initiates Stripe checkout flow",
+        "User receives clear feedback about the server creation process (loading states, success messages)",
+        "Server appears in the user's dashboard after successful creation"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/UserDashboard.tsx",
+          "operation": "modify",
+          "description": "Fix the plan selection and server creation flow by ensuring the selected plan is properly stored before server creation. For free plans, directly call createServer mutation without navigation. For paid plans, properly construct ShoppingItem array and redirect to Stripe checkout using window.location.href (not router navigation). Add proper error handling and loading states throughout the flow. Ensure the component does not trigger duplicate server creation attempts or premature navigation that causes the redirect loop."
+        },
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Review and enhance the createServer mutation to include proper error handling, success callbacks, and loading state management. Ensure the mutation properly invalidates the 'myServers' query cache on success so the new server appears immediately in the dashboard. Add error reporting that surfaces backend errors to the UI layer for display."
+        }
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "summary": "Debug and fix form submission logic in UserDashboard for plan selection, server creation, and Stripe checkout flow",
+      "acceptanceCriteria": [
+        "Plan selection properly stores the selected plan before attempting server creation",
+        "Error handling displays meaningful error messages if server creation fails",
+        "Stripe checkout session creation does not fail silently",
+        "Navigation logic correctly handles success and failure states"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/UserDashboard.tsx",
+          "operation": "modify",
+          "description": "Debug the plan selection handler to ensure it correctly identifies free vs paid plans. For free plans (price === 0), immediately invoke the createServer mutation with the planId. For paid plans, construct the ShoppingItem with correct fields (productName, productDescription, currency: 'usd', priceInCents: plan.price converted from dollars to cents, quantity: 1), then call createCheckoutSession. Add validation to check that the Stripe session response includes a valid url field before redirecting. If url is missing, display an error message instead of navigating. Add try-catch blocks around all async operations to surface errors to the user."
+        },
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Review the useCreateCheckoutSession hook to ensure it properly parses the JSON response from the backend and validates that session.url exists before returning. Add error handling that throws descriptive errors if the session is malformed or missing required fields. Ensure the mutation properly reports errors to the calling component."
+        }
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "summary": "Add loading and error states to server creation button with clear user feedback",
+      "acceptanceCriteria": [
+        "Button shows loading state (spinner or disabled state) while server is being created",
+        "Button is disabled during server creation to prevent duplicate submissions",
+        "Error messages are displayed clearly if server creation fails",
+        "Success feedback is shown when server is successfully created"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/UserDashboard.tsx",
+          "operation": "modify",
+          "description": "Add loading state indicators to the server creation flow. When a user selects a plan and initiates server creation, immediately disable the selection UI and show a loading spinner or progress indicator. Use the createServer.isPending state to control button disabled state. Display error messages using an alert or toast component when createServer.isError is true, showing createServer.error.message. On successful free server creation, display a success message before the server appears in the list. For paid plans, show loading state during checkout session creation before redirecting to Stripe. Ensure all user actions during the provisioning process provide immediate visual feedback."
+        },
+        {
+          "path": "frontend/src/components/ServerCard.tsx",
+          "operation": "modify",
+          "description": "Ensure the ServerCard component properly displays server status including 'provisioning' or 'creating' states with appropriate visual indicators. Add loading animations or badges for servers that are being created to provide feedback while waiting for backend provisioning to complete."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,159 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 5,
+  "summary": "Minecraft server hosting website called 'Doom Hosting' where users can create and manage servers with different pricing tiers (Free, $100, $300, $500 plans with increasing RAM/FPS). Features include automatic server provisioning, plugin/mod support similar to Aternos, and an admin panel for managing commands and permissions. Payment processing will use Stripe for secure transactions.",
+  "architectural_notes": [
+    "Use Stripe for payment processing instead of direct phone/bank account integration",
+    "Server provisioning must be automated upon plan purchase",
+    "Plugin/mod system architecture should reference Aternos design patterns",
+    "Admin panel requires role-based access control for command delegation"
+  ],
+  "known_issues": [
+    "Cannot integrate payment processing to personal phone numbers or bank accounts - Stripe required for compliance and security",
+    "Server creation button redirects to interface instead of creating server - form submission or navigation logic may be broken"
+  ],
+  "isFixRequest": true,
+  "existing_features": [
+    {
+      "id": "feature-create-user-registration-and-authentication-system-using-internet-identity-that-allows-users-to-sign-up-and-log-in-to-manage-their-minecraft-servers",
+      "title": "Create user registration and authentication system using Internet Identity that allows users to sign up and log in to manage their Minecraft servers",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-four-server-hosting-plans-with-pricing-and-specifications-free-basic-ram-fps-plan-1-100-with-enhanced-ram-fps-plan-2-300-with-higher-ram-fps-plan-4-500-with-maximum-ram-fps-store-plan-details-including-price-ram-allocation-and-fps-capabilities-in-the-backend",
+      "title": "Implement four server hosting plans with pricing and specifications: Free (basic RAM/FPS), Plan 1 ($100 with enhanced RAM/FPS), Plan 2 ($300 with higher RAM/FPS), Plan 4 ($500 with maximum RAM/FPS). Store plan details including price, RAM allocation, and FPS capabilities in the backend.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-automatic-server-provisioning-system-that-creates-and-activates-a-minecraft-server-instance-immediately-after-a-user-selects-a-plan-free-or-paid-store-server-details-including-server-id-plan-type-domain-ending-in-net-status-and-owner-in-the-backend",
+      "title": "Build automatic server provisioning system that creates and activates a Minecraft server instance immediately after a user selects a plan (free or paid). Store server details including server ID, plan type, domain (ending in .net), status, and owner in the backend.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-plugin-and-mod-management-system-similar-to-aternos-where-users-can-browse-select-and-add-plugins-mods-to-their-minecraft-servers-include-a-library-of-popular-plugins-with-descriptions-and-installation-capabilities",
+      "title": "Create plugin and mod management system similar to Aternos where users can browse, select, and add plugins/mods to their Minecraft servers. Include a library of popular plugins with descriptions and installation capabilities.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-admin-dashboard-where-the-platform-owner-can-view-all-servers-manage-user-permissions-grant-or-revoke-server-commands-to-specific-users-and-monitor-all-server-activities-across-the-platform",
+      "title": "Build admin dashboard where the platform owner can view all servers, manage user permissions, grant or revoke server commands to specific users, and monitor all server activities across the platform",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-integrate-stripe-payment-processing-for-paid-plans-100-300-500-with-secure-checkout-flow-store-payment-records-and-transaction-history-in-the-backend-without-exposing-sensitive-payment-information-to-users",
+      "title": "Integrate Stripe payment processing for paid plans ($100, $300, $500) with secure checkout flow. Store payment records and transaction history in the backend without exposing sensitive payment information to users.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-design-a-highly-professional-user-interface-with-polished-visual-styling-modern-layout-patterns-and-locked-secure-interface-elements-that-prevent-unauthorized-access-to-admin-features-use-a-dark-gaming-oriented-color-scheme-with-vibrant-accents-suitable-for-a-minecraft-hosting-platform",
+      "title": "Design a highly professional user interface with polished visual styling, modern layout patterns, and locked/secure interface elements that prevent unauthorized access to admin features. Use a dark, gaming-oriented color scheme with vibrant accents suitable for a Minecraft hosting platform.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-user-dashboard-showing-owned-servers-current-plan-details-server-status-domain-name-net-resource-usage-ram-fps-and-quick-access-to-plugin-management-and-server-controls",
+      "title": "Create user dashboard showing owned servers, current plan details, server status, domain name (.net), resource usage (RAM/FPS), and quick access to plugin management and server controls",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-server-creation-button-in-the-user-dashboard-to-prevent-it-from-redirecting-back-to-the-interface-without-creating-a-server-ensure-that-clicking-the-button-properly-initiates-the-server-provisioning-flow-for-both-free-and-paid-plans",
+      "title": "Fix the server creation button in the user dashboard to prevent it from redirecting back to the interface without creating a server. Ensure that clicking the button properly initiates the server provisioning flow for both free and paid plans.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-debug-and-fix-the-form-submission-or-navigation-logic-in-the-userdashboard-component-that-handles-server-creation-investigate-whether-the-issue-is-in-the-plan-selection-handler-the-server-creation-mutation-or-the-stripe-checkout-redirect-flow",
+      "title": "Debug and fix the form submission or navigation logic in the UserDashboard component that handles server creation. Investigate whether the issue is in the plan selection handler, the server creation mutation, or the Stripe checkout redirect flow.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-loading-and-error-states-to-the-server-creation-button-to-provide-user-feedback-during-the-provisioning-process-display-a-loading-spinner-while-the-server-is-being-created-and-show-error-messages-if-the-operation-fails",
+      "title": "Add loading and error states to the server creation button to provide user feedback during the provisioning process. Display a loading spinner while the server is being created and show error messages if the operation fails.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "User registration and server creation system",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Four pricing tiers: Free, $100, $300, $500 with scaling RAM/FPS",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Automatic server provisioning after plan purchase",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Plugin and mod support system (Aternos-like)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Admin panel for command and permission management",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Stripe payment integration for secure transactions",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Professional UI/UX design with locked interface elements",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Server domain system with .net TLD support",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "projectName": "Doom Hosting",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

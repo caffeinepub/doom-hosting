@@ -1,0 +1,71 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-fix-the-server-creation-button-in-the-user-dashboard-to-prevent-it-from-redirecting-back-to-the-interface-without-creating-a-server-ensure-that-clicking-the-button-properly-initiates-the-server-provisioning-flow-for-both-free-and-paid-plans",
+      "featureTitle": "Fix the server creation button in the user dashboard to prevent it from redirecting back to the interface without creating a server. Ensure that clicking the button properly initiates the server provisioning flow for both free and paid plans.",
+      "files": [
+        "frontend/src/hooks/useQueries.ts",
+        "frontend/src/pages/UserDashboard.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-9"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-debug-and-fix-the-form-submission-or-navigation-logic-in-the-userdashboard-component-that-handles-server-creation-investigate-whether-the-issue-is-in-the-plan-selection-handler-the-server-creation-mutation-or-the-stripe-checkout-redirect-flow",
+      "featureTitle": "Debug and fix the form submission or navigation logic in the UserDashboard component that handles server creation. Investigate whether the issue is in the plan selection handler, the server creation mutation, or the Stripe checkout redirect flow.",
+      "files": [
+        "frontend/src/hooks/useQueries.ts",
+        "frontend/src/pages/UserDashboard.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-10"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-loading-and-error-states-to-the-server-creation-button-to-provide-user-feedback-during-the-provisioning-process-display-a-loading-spinner-while-the-server-is-being-created-and-show-error-messages-if-the-operation-fails",
+      "featureTitle": "Add loading and error states to the server creation button to provide user feedback during the provisioning process. Display a loading spinner while the server is being created and show error messages if the operation fails.",
+      "files": [
+        "frontend/src/components/ServerCard.tsx",
+        "frontend/src/pages/UserDashboard.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-11"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

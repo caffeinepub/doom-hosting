@@ -1,0 +1,81 @@
+{
+  "kind": "build_request",
+  "title": "Fix server creation button - prevent redirect loop and ensure server provisioning",
+  "projectName": "Doom Hosting",
+  "priority": "high",
+  "requirements": [
+    {
+      "id": "REQ-9",
+      "text": "Fix the server creation button in the user dashboard to prevent it from redirecting back to the interface without creating a server. Ensure that clicking the button properly initiates the server provisioning flow for both free and paid plans.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-latest"
+        ],
+        "quotes": [
+          "I am clicking at to make server but it's come again to interface and the button is not working"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Clicking the server creation button does not cause a redirect loop back to the dashboard",
+        "Free plan selection immediately creates a server without redirecting",
+        "Paid plan selection properly initiates Stripe checkout flow",
+        "User receives clear feedback about the server creation process (loading states, success messages)",
+        "Server appears in the user's dashboard after successful creation"
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "text": "Debug and fix the form submission or navigation logic in the UserDashboard component that handles server creation. Investigate whether the issue is in the plan selection handler, the server creation mutation, or the Stripe checkout redirect flow.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-latest"
+        ],
+        "quotes": [
+          "I am clicking at to make server but it's come again to interface and the button is not working"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Plan selection properly stores the selected plan before attempting server creation",
+        "Error handling displays meaningful error messages if server creation fails",
+        "Stripe checkout session creation does not fail silently",
+        "Navigation logic correctly handles success and failure states"
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "text": "Add loading and error states to the server creation button to provide user feedback during the provisioning process. Display a loading spinner while the server is being created and show error messages if the operation fails.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-latest"
+        ],
+        "quotes": [
+          "the button is not working"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Button shows loading state (spinner or disabled state) while server is being created",
+        "Button is disabled during server creation to prevent duplicate submissions",
+        "Error messages are displayed clearly if server creation fails",
+        "Success feedback is shown when server is successfully created"
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not modify backend server provisioning logic unless frontend debugging reveals a backend issue",
+    "Preserve existing Stripe payment integration and checkout flow",
+    "Maintain Internet Identity authentication requirements for server creation"
+  ],
+  "nonGoals": [
+    "Changing the pricing plans or server specifications",
+    "Modifying the admin dashboard functionality",
+    "Altering the plugin management system",
+    "Redesigning the overall UI layout"
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

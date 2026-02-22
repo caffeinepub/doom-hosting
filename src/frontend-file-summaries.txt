@@ -1,0 +1,20 @@
+{
+  "frontend/src/App.tsx": "Main application component with TanStack Router setup, theme provider, and all route definitions including landing, dashboard, server details, plugins, admin, and payment pages.",
+  "frontend/src/components/Layout.tsx": "Main layout wrapper with header navigation, logo, authentication button, conditional admin link, and footer with Caffeine attribution.",
+  "frontend/src/components/LoginButton.tsx": "Internet Identity login/logout button component with loading states and query cache clearing on logout.",
+  "frontend/src/components/ProfileSetupModal.tsx": "Modal dialog for first-time user profile setup collecting name and email, shown only when user has no profile.",
+  "frontend/src/components/PricingPlans.tsx": "Pricing plans grid displaying four hosting tiers with icons, specifications, and selection buttons that trigger server provisioning flow.",
+  "frontend/src/components/ServerCard.tsx": "Reusable server card component displaying server domain, plan details, status badge with color coding, resource specs, provisioning state with loading spinner, and disabled management button during provisioning.",
+  "frontend/src/components/StripeSetup.tsx": "Admin-only modal for configuring Stripe payment credentials including secret key and allowed countries.",
+  "frontend/src/components/AccessDenied.tsx": "Access denied screen shown to non-admin users attempting to access admin-only features.",
+  "frontend/src/pages/LandingPage.tsx": "Homepage with hero section, feature highlights, and pricing plans grid for unauthenticated and authenticated users.",
+  "frontend/src/pages/UserDashboard.tsx": "User dashboard displaying owned servers with fixed server provisioning flow that prevents redirect loops using a ref to track processed plans, shows loading overlay during processing, and properly clears query parameters after handling.",
+  "frontend/src/pages/ServerDetails.tsx": "Detailed server view showing specifications, installed plugins with removal, and available plugins with installation functionality.",
+  "frontend/src/pages/PluginLibrary.tsx": "Plugin browsing page displaying all available plugins with descriptions and version information.",
+  "frontend/src/pages/AdminDashboard.tsx": "Admin-only dashboard with tabs for servers, users, and settings including Stripe configuration and platform statistics.",
+  "frontend/src/pages/PaymentSuccess.tsx": "Payment success confirmation page that triggers server creation after successful Stripe payment.",
+  "frontend/src/pages/PaymentFailure.tsx": "Payment failure page shown when Stripe checkout is cancelled or fails with retry options.",
+  "frontend/src/hooks/useQueries.ts": "Centralized React Query hooks for all backend operations including enhanced error handling in createServer and createCheckoutSession mutations with proper error propagation.",
+  "frontend/src/index.css": "Global styles with dark gaming-themed OKLCH color system featuring deep blacks, vibrant green/emerald accents for Minecraft aesthetic.",
+  "frontend/tailwind.config.js": "Tailwind configuration with custom gaming colors, fonts (Inter, JetBrains Mono), glow shadows, and extended design tokens."
+}
